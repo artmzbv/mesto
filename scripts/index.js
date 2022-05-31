@@ -1,5 +1,6 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
+import { initialCards } from './initialCards.js';
 
 //Практическая работа №4
 //Переменные попапа//
@@ -38,38 +39,14 @@ function handleProfileFormSubmit(evt) {
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 //Практическая работа №5
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
 //проблемный элемент - постоянно рисует ошибки - по поводу data
+function createCard(data) {
+    return new Card(data, ('#user')).generateCard();
+};
+
 const renderCard = (data) => {
-    const card = new Card(data);
-    const cardElement = card.generateCard();
-    document.querySelector('.elements').prepend(cardElement);
+    document.querySelector('.elements').prepend(createCard(data));
 };
 
 initialCards.forEach(data => {
@@ -81,13 +58,12 @@ const popupImage = document.querySelector('.image-popup');
 const elementImageExpand = document.querySelector('.image-popup__mask-group');
 const elementImageExpandText = document.querySelector('.image-popup__text');
 
-const cardExpand = (name, link) => {
+export const cardExpand = (name, link) => {
     elementImageExpand.alt = name;
     elementImageExpand.src = link;
     elementImageExpandText.textContent = name;
     openPopup(popupImage);
 };
-
 //Функция закрытия карточки
 const imageButtonClose = document.querySelector('.popup__close-button_image');
 imageButtonClose.addEventListener('click', function closeImagePopup() {
@@ -98,7 +74,7 @@ imageButtonClose.addEventListener('click', function closeImagePopup() {
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupByEscape);
-    document.addEventListener('click', closePopupByOverlay);
+    popup.addEventListener('click', closePopupByOverlay);
 };
 
 function closePopup(popup) {

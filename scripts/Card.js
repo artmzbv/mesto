@@ -1,15 +1,16 @@
 export default class Card {
-    constructor(data) {
+    constructor(data, template) {
         //привязываем свойства объекта к массиву 
         this._name = data.name;
         this._link = data.link;
+        this._template = template;
     };
     //выбираем нужный template
     _getTemplate() {
         //создаем карточку на основе template
         const cardElement = document
             //объявляем template, элементы которого перейдут в конйтенер блока elements// 
-            .querySelector('#user')
+            .querySelector(this._template)
             .content
             //elements, судя по всему
             .querySelector('.element')
@@ -52,5 +53,7 @@ export default class Card {
     //2.Создаем функцию удаления карточек
     _deleteCard() {
         this._element.remove();
+        this._element = null;
     };
 };
+import { cardExpand } from "./index.js";
