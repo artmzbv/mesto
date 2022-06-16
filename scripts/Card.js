@@ -1,9 +1,11 @@
 export default class Card {
-    constructor(data, template) {
+    constructor(data, template, cardExpand) {
         //привязываем свойства объекта к массиву 
         this._name = data.name;
         this._link = data.link;
+
         this._template = template;
+        this._cardExpand = cardExpand;
     };
     //выбираем нужный template
     _getTemplate() {
@@ -42,7 +44,7 @@ export default class Card {
             this._deleteCard();
         });
         this._element.querySelector('.element__mask-group').addEventListener('click', () => {
-            cardExpand(this._name, this._link);
+            this._cardExpand();
         });
     };
     //1.Создаем  функцию изменения лайков 
@@ -56,4 +58,4 @@ export default class Card {
         this._element = null;
     };
 };
-import { cardExpand } from "./index.js";
+
