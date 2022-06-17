@@ -5,13 +5,12 @@ import Section from './Section.js'
 import FormValidator from './FormValidator.js';
 import { initialCards } from './initialCards.js';
 import UserInfo from './UserInfo.js';
-//Практическая работа №4
-const user = new UserInfo('profile__title', '.profile__subtitle')
+
+
+const user = new UserInfo('profile__title', '.profile__subtitle');
 //Переменные формы попапа//
 const profileForm = document.querySelector('.popup__form_profile');
 const imageForm = document.querySelector('.popup__form_image');
-
-//Практическая работа №6
 //Аргументы в FormValidator
 const config = {
     formSelector: '.popup__form',
@@ -32,23 +31,16 @@ formProfileValid.enableValidation();
 const inputValueName = document.querySelector('.profile__title');
 const inputValueJob = document.querySelector('.profile__subtitle');
 
-const handleProfileFormSubmit = (data) => {
-    const { nameinput, jobinput } = data;
-    inputValueName.textContent = nameinput;
-    inputValueJob.textContent = jobinput;
-    popupEdit.close();
-};
-
+//открытие попапа добавления карточек//
 const cardButtonAdd = document.querySelector('.profile__addbutton');
 cardButtonAdd.addEventListener('click', () => {
-    document.querySelector('.popup-add').classList.add('popup_opened');
-
+    popupAddImage.open()
 });
 
-//Переменные попапа//
+//открытие попапа профиля//
 const profileButton = document.querySelector('.profile__editbutton')
 profileButton.addEventListener('click', () => {
-    document.getElementById('popup-edit').classList.add('popup_opened');
+    popupEdit.open();
 });
 
 //Создаем функцию сохранения инпутов в новую карточку(объект) массива 
@@ -61,17 +53,26 @@ const handleCardFormSubmit = (data) => {
     popupAddImage.close();
 };
 
+//функция изменения данных в формой
+const handleProfileFormSubmit = (data) => {
+    const { nameinput, jobinput } = data;
+    inputValueName.textContent = nameinput;
+    inputValueJob.textContent = jobinput;
+    popupEdit.close();
+};
+
+
 const createCard = (data) => {
     return new Card(data, '#user', () => {
         popupImage.open(data.name, data.link)
     }).generateCard();
 };
 
+//рендеринг массива карточек
 const renderCards = (data, container) => {
     const card = createCard(data);
     container.prepend(card);
 };
-
 const cardList = new Section({ items: initialCards, renderer: renderCards }, '.elements');
 cardList.renderItems();
 

@@ -18,7 +18,7 @@ export default class Popup {
     }
 
     //функция закрытия попапа через ESC 
-    _handleEscClose (evt){
+    _handleEscClose(evt) {
         if (evt.key === 'Escape') {
             this.close();
         }
