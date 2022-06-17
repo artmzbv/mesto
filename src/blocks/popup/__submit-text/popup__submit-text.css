@@ -1,0 +1,14 @@
+.popup__submit-text {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  margin: 0 auto;
+}
+
+@media (max-width: 320px) {
+  .popup__submit-text {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
