@@ -1,7 +1,7 @@
 export default class Popup {
-    constructor(popupSelector) {
-        this._popupSelector = document.querySelector(popupSelector);
-        this.buttonClose = this._popupSelector.querySelector('.popup__close-button')
+    constructor(popupElement) {
+        this._popupElement = document.querySelector(popupElement);
+        this.buttonClose = this._popupElement.querySelector('.popup__close-button')
         this._handleEscClose = this._handleEscClose.bind(this);
     }
     //добавляем слушатели кликов кнопке закрытия (класс для всех кнопок одинаковый - ни один попап не пострадает)
@@ -10,7 +10,7 @@ export default class Popup {
         this.buttonClose.addEventListener('click', () => {
             this.close()
         })
-        this._popupSelector.addEventListener('click', (evt) => {
+        this._popupElement.addEventListener('click', (evt) => {
             if (evt.target.classList.contains('popup')) {
                 this.close();
             }
@@ -26,12 +26,12 @@ export default class Popup {
 
     //функция открытия попапа
     open() {
-        this._popupSelector.classList.add('popup_opened');
+        this._popupElement.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
     };
 
     close() {
-        this._popupSelector.classList.remove('popup_opened');
+        this._popupElement.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose);
     };
 }
