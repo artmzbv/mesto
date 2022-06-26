@@ -1,0 +1,7 @@
+.element__like_active {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  background-image: url(../../../../images/Union.svg);
+}
