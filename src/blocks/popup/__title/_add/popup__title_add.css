@@ -1,9 +1,0 @@
-.popup__title_add {
-  min-width: 330px;
-}
-
-@media (max-width: 600px) {
-  .popup__title_add {
-    min-width: 238px;
-  }
-}
