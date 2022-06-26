@@ -16,7 +16,7 @@
           <div class="profile__container">
             <div  class="profile__avatar_button"><img
               class="profile__avatar"
-              src=""
+              src="<%=require('./images/profile-avatar.jpg')%>"
               alt="Аватар пользователя"
             /></div>
             <div class="profile__info">
@@ -153,7 +153,7 @@
         <form class="popup__form" novalidate>
           <h2 class="popup__title popup__title_add">Обновить аватар</h2>
           <input
-            id="url"
+            id="urlav"
             name="avatar"
             type="url"
             placeholder="Ссылка на картинку"
@@ -172,7 +172,6 @@
         </form>
       </div>
     </div>
-  </div>
     <div class="popup image-popup popup_opacity-high">
       <button
         class="popup__close-button popup__close-button_image"
