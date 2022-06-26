@@ -1,9 +1,0 @@
-.popup_opened {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  visibility: visible;
-  opacity: 1;
-}
