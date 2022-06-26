@@ -37,15 +37,7 @@ const handleCardFormSubmit = (data) => {
 popupAddImage.loader(true)
   api.postNewCard(data["titleinput"], data["refinput"])
     .then((res) => {
-      const object = {
-        name: res.name,
-        link: res.link,
-        likes: res.likes,
-        id: res._id,
-        userId: userId,
-        ownerId: res.owner._id,
-      };
-      cardList.renderItems(object);
+      cardList.addItem(createCard(res));
       popupAddImage.close();
     })
     .catch((err) => {
@@ -169,6 +161,7 @@ Promise.all([api.getUserData(), api.getInitialCards()])
    console.log(err)
   });
 
+// Прошлый вариант
 //   api.getUserData().then((res) => {
 //     console.log(res);
 //     console.log(res);
