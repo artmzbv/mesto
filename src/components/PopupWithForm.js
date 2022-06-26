@@ -1,5 +1,4 @@
 import Popup from './Popup.js'
-import {addSubmitButton, editSubmitButton, avatarSubmitButton} from '../utils/utils.js'
 export default class PopupWithForm extends Popup {
     constructor(popupSelector, handleFormSubmit) {
         super(popupSelector);
@@ -35,28 +34,15 @@ export default class PopupWithForm extends Popup {
         this._popupForm.reset();
     }
       //Задание 10 - создадим
-    loader(isLoading){
-        if (isLoading, this._popupSelector) {
+    loader(isLoading, popupSelector){
+        if (isLoading) {
         this._submitButton.textContent = 'Сохранение...'
     } else {
-        if (this._popupSelector === 'popup-add') {
+        if (popupSelector === 'popup-add') {
             this._submitButton.textContent = 'Создать'
         } else {
             this._submitButton.textContent = 'Сохранить'
         }
     }
     }
-//   addSubmitButton.addEventListener("click", () => {
-//     addSubmitButton.textContent = "Создать...";
-//     setTimeout(function () {
-//       addSubmitButton.textContent = "Создать";
-//     }, 2000);
-//     });
-  
-//   avatarSubmitButton.addEventListener("click", () => {
-//     avatarSubmitButton.textContent = "Сохранить...";
-//     setTimeout(function () {
-//       avatarSubmitButton.textContent = "Сохранить";
-//     }, 2000);
-//   });
 };
