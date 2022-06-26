@@ -12,13 +12,12 @@ let userId;
 
 //Проводим формы через FormValidator
 const formImageValid = new FormValidator(config, imageForm);
-formImageValid.enableValidation();
 const formProfileValid = new FormValidator(config, profileForm);
-formProfileValid.enableValidation();
 
-cardButtonAdd.addEventListener("click", (evt) => {
-  evt.preventDefault();
+
+cardButtonAdd.addEventListener("click", () => {
   popupAddImage.open();
+  formImageValid.enableValidation();
 });
 avatarButton.addEventListener("click", () => {
   popupAvatar.open();
@@ -30,6 +29,7 @@ profileButton.addEventListener("click", () => {
   inputValueName.value = data.name;
   inputValueJob.value = data.job;
   popupEdit.open();
+  formProfileValid.enableValidation();
 });
 
 //Создаем функцию сохранения инпутов в новую карточку(объект) массива
