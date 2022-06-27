@@ -5,22 +5,27 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import UserInfo from "../components/UserInfo.js";
-import {profileForm, imageForm, config, inputValueName, inputValueJob, cardButtonAdd, profileButton, avatarButton} from "../utils/utils.js";
+import {profileForm, imageForm, config, inputValueName, inputValueJob, cardButtonAdd, profileButton, avatarButton, avatarForm } from "../utils/utils.js";
 import { api } from "../components/Api.js";
 
 let userId;
 
 //Проводим формы через FormValidator
 const formImageValid = new FormValidator(config, imageForm);
+formImageValid.enableValidation();
 const formProfileValid = new FormValidator(config, profileForm);
+formProfileValid.enableValidation();
+const formAvatarValid = new FormValidator(config, avatarForm);
+formAvatarValid.enableValidation();
 
 
 cardButtonAdd.addEventListener("click", () => {
   popupAddImage.open();
-  formImageValid.enableValidation();
+  formImageValid.disabledButton()
 });
 avatarButton.addEventListener("click", () => {
   popupAvatar.open();
+  formAvatarValid.disabledButton()
 });
 
 //открытие попапа профиля//
@@ -29,7 +34,7 @@ profileButton.addEventListener("click", () => {
   inputValueName.value = data.name;
   inputValueJob.value = data.job;
   popupEdit.open();
-  formProfileValid.enableValidation();
+  formProfileValid.disabledButton();
 });
 
 //Создаем функцию сохранения инпутов в новую карточку(объект) массива
@@ -59,7 +64,6 @@ const handleProfileFormSubmit = (data) => {
   api
     .patchProfile(name, job)
     .then((res) => {
-      console.log(res);
       user.setUserInfo(res.name, res.about, res.avatar);
       popupEdit.close();
     })
