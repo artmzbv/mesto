@@ -34,11 +34,11 @@ export default class PopupWithForm extends Popup {
         this._popupForm.reset();
     }
       //Задание 10 - создадим
-    loader(isLoading, popupSelector){
+    loader(isLoading, popuptext){
         if (isLoading) {
         this._submitButton.textContent = 'Сохранение...'
     } else {
-        if (popupSelector === 'popup-add') {
+        if (popuptext === 'add') {
             this._submitButton.textContent = 'Создать'
         } else {
             this._submitButton.textContent = 'Сохранить'
