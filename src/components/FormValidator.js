@@ -48,10 +48,7 @@ export default class FormValidator {
         this._buttonElement.setAttribute('disabled', 'disabled');
     }
 
-    enableValidation = (evt) => {
-        this._formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault()
-        });
+    enableValidation = () => {
         this._setEventListeners();
     };
 
